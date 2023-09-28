@@ -25,6 +25,7 @@ const[result,setresult]=useState(" ")
 
 //............button submission................
 const submit_input=()=>{
+  setinput(" ")
   if(com_input==user_input){
     console.log("match")
     settext("Enter")

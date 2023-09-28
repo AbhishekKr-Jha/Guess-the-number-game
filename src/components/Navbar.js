@@ -3,24 +3,25 @@ import {Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand bg-dark  ">
-  <div className="container-fluid">
-    <Link className="navbar-brand " >Guess_The_Number_Game</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div className="navbar-nav">
-      <Link className="nav-link active mx-1" aria-current="page" to="/Home">Home</Link>
-        {/* <Link className="nav-link active mx-3" aria-current="page" to="/Area">Game</Link> */}
-        <Link className="nav-link active mx-1" aria-current="page" to="/About Us">About Us</Link>
-        <Link className="nav-link active mx-1" aria-current="page" to="/Name">Name</Link>
-        {/* <Link className="nav-link" to="/">Features</a>
-        <Link className="nav-link" to="/">Pricing</a> */}
-     
+    <nav className="navbar navbar-expand-lg bg-dark ">
+    <div className="container-fluid ">
+      <Link className="navbar-brand text-light" to="/">Guess_The_Number</Link>
+      <button className="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon  "></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link className="nav-link active text-light" aria-current="page" to="/">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-light" to="/About_Us">About</Link>
+          </li>
+         
+        
+        </ul>
       </div>
-    </div>
-  </div>
-</nav>
+    </div> 
+  </nav>
   )
 }
