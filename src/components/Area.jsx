@@ -1,37 +1,37 @@
-import React,{ useState,useEffect} from 'react'
-// import Spinner from './Spinner.gif'
+import React,{ useState,useEffect,useRef} from 'react'
 
 export default function Area() {
+const [main,setmain]=useState(false)
+const[text,settext]=useState("Enter")
+const[trials,settrials]=useState(0)
+const[com_input,setcom_input]=useState(" ")
+const inputRef = useRef(null);
+const [input, setinput] = useState("Your Guess")
+const[result,setresult]=useState()
+
+
+//....................computer input................
+useEffect(() => {
+  setcom_input(parseInt(Math.random() * 100))
+  
+ },[])
+
   // .............user input update................
-  const [user_input, setinput] = useState(" ")
   const input_preview=(e)=>{
+    setmain(false)
   let a=e.target.value
   setinput(a)
   }
-  
-  //................creating  state..............
-const[text,settext]=useState("Enter")
-const[trials,settrials]=useState(0)
-//....................computer input................
-const[com_input,setcom_input]=useState(" ")
- 
-useEffect(() => {
-   setcom_input(parseInt(Math.random() * 100))
-  },[])
-
-//................no correct or not state......................
-const[result,setresult]=useState(" ")
-
 
 //............button submission................
 const submit_input=()=>{
-  setinput(" ")
-  if(com_input==user_input){
+ setmain(true)
+  if(com_input==input){
     console.log("match")
     settext("Enter")
     setresult(" you won")
   }
-  else if(user_input>com_input){
+  else if(input>com_input){
     settext("Re-Enter")
     console.log("not matched")
     setresult("try something smaller")
@@ -41,35 +41,28 @@ const submit_input=()=>{
     console.log("not matched")
     setresult("try something larger")
   }
-   settrials(trials+1)
-console.log("its the user input number:",user_input)
 
+   settrials(trials+1)
+   inputRef.current.focus();
+console.log("its the user input number:",input)
   }
+ 
   console.log("computer choice :",com_input)
+
 //.....................play again..................
 const reset_game=()=>{
   window.location.reload(true)
   console.log("reset clicked")
 }
-//...............setting image.................
-// const b_image=()=>{
-//   backgroundImage:`url(${Spinner})`,
-//   height:'100vh',
-//   backgroundSize:'cover'
-
-// }
-// document.body.style.backgroundImage=`url(${Spinner}) `
-
-  return ( 
+ return ( 
     <>    
 
     <div className='container my-5' >
-       <h3 className='my-4'>{text} your Number</h3>
-       {/* {setinput(" ")}{settrials(0)} */}
-                    
+
+       <h3 className='my-4'>{text} your Number</h3>                 
 {/* .....................user input box.................. */}
 <div className="input-group mx-auto ">
-<input type="number" className="form-control " placeholder="your number" value={user_input} onChange={input_preview} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+<input  type="number" className="form-control " placeholder={input} value={main?" ":input} onChange={input_preview} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" ref={inputRef} />
 </div>
 
 {/*........................ button................... */}
@@ -77,16 +70,15 @@ const reset_game=()=>{
   <button className="btn btn-primary "  onClick={submit_input} type="submit">Submit</button>
   <input className="btn btn-primary" type="reset" onClick={reset_game} value="Reset"></input>
 </div>
-  
 
 <hr />
-<h5>User input :{user_input}</h5>
+<h5>User input :{input}</h5>
 <h5>Trials :{trials} </h5>
 <h5>Minus points :{trials*3} </h5>
 <hr />
 <h5>output :{result}</h5>
 <hr />
-<h5>Total score :{100-(trials*3)}</h5>
+<h5>Your score :{100-(trials*3)}</h5>
 
                                     
 
